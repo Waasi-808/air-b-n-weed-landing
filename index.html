@@ -1,135 +1,108 @@
-<!-- index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Air B 'n' Weed</title>
+  <title>Air B n' Weed - Stay High, Stay Comfy</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            gold: '#D4AF37',
-          },
-          fontFamily: {
-            poppins: ['Poppins', 'sans-serif'],
-          },
-        },
-      },
-    }
-  </script>
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+  </style>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
-<body class="font-poppins bg-[#1c1c1c] text-white min-h-screen flex flex-col">
-  <main class="flex-1 flex flex-col items-center px-4 py-12">
-    <!-- Logo -->
-    <img src="Air B n' Weed Dashboard Preview.png" alt="Air B 'n' Weed Logo" class="h-24 mb-4">
+<body class="bg-green-50 text-gray-800">
+  <div class="max-w-xl mx-auto py-10 px-6">
+    <div class="text-center mb-8">
+      <img src="logo.png" alt="Air B n' Weed Logo" class="w-16 h-16 mx-auto mb-2">
+      <h1 class="text-3xl font-bold text-emerald-800">Air B-n- Weed</h1>
+      <p class="italic text-green-700">Stay High, Stay Comfy</p>
+    </div>
 
-    <!-- Title & Slogan -->
-    <h1 class="text-4xl font-bold text-gold mb-2">Air B-n- Weed</h1>
-    <p class="text-lg text-gray-300 mb-8 italic">Stay High, Stay Comfy</p>
+    <div class="text-center mb-6">
+      <p class="text-lg">Air B n Weed, providing access to Cannabis friendly accommodations Worldwide.</p>
+      <p class="mt-2 font-medium text-emerald-700">Interested...?</p>
+    </div>
 
-    <!-- Intro -->
-    <p class="text-center max-w-xl mb-10 text-white">Air B 'n' Weed, providing access to Cannabis friendly accommodations Worldwide.<br>Interested...?</p>
-
-    <!-- Form -->
-    <form id="waitlistForm" action="https://formsubmit.co/elevatedechelon2025@gmail.com" method="POST" class="w-full max-w-md bg-white p-6 rounded shadow text-black">
-      <input type="hidden" name="_next" value="https://airb-n-weed.com/thank-you.html">
+    <form id="waitlistForm" action="https://formsubmit.co/elevatedechelon2025@gmail.com" method="POST" class="space-y-4 bg-white p-6 rounded-lg shadow">
+      <input type="hidden" name="_next" value="https://air-b-n-weed.onrender.com/thank-you.html">
       <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" id="formSubject" name="_subject" value="New Submission" />
+      <input type="hidden" id="subjectField" name="_subject" value="">
 
-      <div class="mb-4">
-        <label class="block font-semibold mb-1">Name</label>
-        <input type="text" name="name" id="name" required class="w-full border px-3 py-2 rounded">
-        <p id="nameError" class="text-red-600 text-sm mt-1 hidden">Name is required</p>
+      <div>
+        <label class="block text-sm font-medium">Name</label>
+        <input type="text" name="name" id="name" class="w-full border px-3 py-2 rounded" required>
+        <p id="nameError" class="text-red-600 text-sm hidden">Name is required</p>
       </div>
 
-      <div class="mb-4">
-        <label class="block font-semibold mb-1">Email</label>
-        <input type="email" name="email" id="email" required class="w-full border px-3 py-2 rounded">
-        <p id="emailError" class="text-red-600 text-sm mt-1 hidden">Email is required</p>
+      <div>
+        <label class="block text-sm font-medium">Email</label>
+        <input type="email" name="email" id="email" class="w-full border px-3 py-2 rounded" required>
+        <p id="emailError" class="text-red-600 text-sm hidden">Email is required</p>
       </div>
 
-      <div class="mb-4">
-        <label class="block font-semibold mb-1">I want to...</label>
-        <label class="block"><input type="checkbox" id="guestCheckbox" name="interest" value="Become a Guest"> Become a Guest</label>
-        <label class="block"><input type="checkbox" id="hostCheckbox" name="interest" value="Become a Host"> Become a Host</label>
-        <p id="checkboxError" class="text-red-600 text-sm mt-1 hidden">Must check at least one</p>
+      <div>
+        <label class="flex items-center space-x-2">
+          <input type="checkbox" id="guest" name="interest" value="Guest">
+          <span>Become a Guest</span>
+        </label>
+        <label class="flex items-center space-x-2">
+          <input type="checkbox" id="host" name="interest" value="Host">
+          <span>Become a Host</span>
+        </label>
+        <p id="checkboxError" class="text-red-600 text-sm hidden">Must check at least one</p>
       </div>
 
-      <button type="submit" class="bg-gold text-white px-4 py-2 rounded hover:opacity-90 w-full">Join the Waitlist</button>
+      <button type="submit" class="w-full bg-emerald-700 text-white py-2 rounded hover:bg-emerald-800">Join the Waitlist</button>
     </form>
-  </main>
 
-  <footer class="text-right text-xs text-gray-400 px-4 pb-2">
-    Powered by Elevated Echelon.
-  </footer>
+    <footer class="mt-8 text-right text-xs text-gray-500">
+      Powered by Elevated Echelon.
+    </footer>
+  </div>
 
   <script>
-    const form = document.getElementById("waitlist-form");
-    const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email");
-    const guestCheckbox = document.getElementById("guest");
-    const hostCheckbox = document.getElementById("host");
-    const nameError = document.getElementById("name-error");
-    const emailError = document.getElementById("email-error");
-    const interestError = document.getElementById("interest-error");
-  
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-  
-      // Reset errors
-      nameError.textContent = "";
-      emailError.textContent = "";
-      interestError.textContent = "";
-  
+    const form = document.getElementById('waitlistForm');
+    form.addEventListener('submit', function (e) {
       let hasError = false;
-  
-      if (!nameInput.value.trim()) {
-        nameError.textContent = "Name is required";
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const guest = document.getElementById('guest').checked;
+      const host = document.getElementById('host').checked;
+
+      document.getElementById('nameError').classList.add('hidden');
+      document.getElementById('emailError').classList.add('hidden');
+      document.getElementById('checkboxError').classList.add('hidden');
+
+      if (!name) {
+        document.getElementById('nameError').classList.remove('hidden');
         hasError = true;
       }
-  
-      if (!emailInput.value.trim()) {
-        emailError.textContent = "Email is required";
+      if (!email) {
+        document.getElementById('emailError').classList.remove('hidden');
         hasError = true;
       }
-  
-      if (!guestCheckbox.checked && !hostCheckbox.checked) {
-        interestError.textContent = "Must check at least one";
+      if (!guest && !host) {
+        document.getElementById('checkboxError').classList.remove('hidden');
         hasError = true;
       }
-  
-      if (hasError) return;
-  
-      const interest = guestCheckbox.checked && hostCheckbox.checked
-        ? "wants to become both"
-        : guestCheckbox.checked
-        ? "wants to Become a Guest"
-        : "wants to Become a Host";
-  
-      const subject = encodeURIComponent(interest);
-      const body = encodeURIComponent(
-        `Name: ${nameInput.value}\nEmail: ${emailInput.value}\nInterest: ${interest}`
-      );
-  let subject = '';
-if (guestChecked && hostChecked) {
-  subject = "wants to become both";
-} else if (guestChecked) {
-  subject = "wants to Become a Guest";
-} else if (hostChecked) {
-  subject = "wants to Become a Host";
-}
-      // Using mailto for now, can later replace with backend email handler
-      window.location.href = `mailto:elevatedechelon2025@gmail.com?subject=${subject}&body=${body}`;
-  
-      // Redirect to thank-you page after a short delay
-      setTimeout(() => {
-        window.location.href = "thank-you.html";
-      }, 500); // wait half a second for the email client to trigger
+
+      if (hasError) {
+        e.preventDefault();
+        return;
+      }
+
+      let subject = "";
+      if (guest && host) {
+        subject = "wants to become both";
+      } else if (guest) {
+        subject = "wants to Become a Guest";
+      } else if (host) {
+        subject = "wants to Become a Host";
+      }
+      document.getElementById('subjectField').value = subject;
     });
-  </script>  
+  </script>
 </body>
 </html>
