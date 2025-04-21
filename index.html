@@ -114,7 +114,14 @@
       const body = encodeURIComponent(
         `Name: ${nameInput.value}\nEmail: ${emailInput.value}\nInterest: ${interest}`
       );
-  
+  let subject = '';
+if (guestChecked && hostChecked) {
+  subject = "wants to become both";
+} else if (guestChecked) {
+  subject = "wants to Become a Guest";
+} else if (hostChecked) {
+  subject = "wants to Become a Host";
+}
       // Using mailto for now, can later replace with backend email handler
       window.location.href = `mailto:elevatedechelon2025@gmail.com?subject=${subject}&body=${body}`;
   
