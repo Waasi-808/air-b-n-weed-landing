@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AirB-n-Weed | Stay High, Stay Comfy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#D4AF37',
+            leafgreen: '#5D9A73',
+            mint: '#E8F5E9',
+          },
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body class="font-poppins bg-mint text-leafgreen min-h-screen flex flex-col justify-between">
+  <div class="p-6 max-w-xl mx-auto text-center">
+    <!-- Logo and Title -->
+    <div class="mb-6">
+      <img src="/logo.png" alt="Air B n' Weed Logo" class="mx-auto h-16">
+      <h1 class="text-3xl font-bold mt-2">AirB-n-Weed</h1>
+      <p class="text-gold text-lg font-semibold">Stay High, Stay Comfy</p>
+    </div>
+
+    <!-- Description -->
+    <div class="my-8">
+      <p class="text-lg">AirB n Weed, providing access to Cannabis friendly accommodations Worldwide.</p>
+      <p class="text-md mt-2">Interested...?</p>
+    </div>
+
+    <!-- Registration Form -->
+    <form id="waitlistForm" class="bg-white rounded-lg shadow p-6 space-y-4">
+      <div>
+        <label class="block text-left font-medium">Name</label>
+        <input type="text" name="name" id="name" class="w-full border px-3 py-2 rounded" required />
+        <p id="nameError" class="text-red-500 text-sm hidden">Name is required.</p>
+      </div>
+      <div>
+        <label class="block text-left font-medium">Email</label>
+        <input type="email" name="email" id="email" class="w-full border px-3 py-2 rounded" required />
+        <p id="emailError" class="text-red-500 text-sm hidden">Email is required.</p>
+      </div>
+      <div>
+        <label class="block text-left font-medium mb-1">I'm interested in:</label>
+        <label class="block">
+          <input type="checkbox" name="interest" value="Guest" class="mr-2"> Become a Guest
+        </label>
+        <label class="block">
+          <input type="checkbox" name="interest" value="Host" class="mr-2"> Become a Host
+        </label>
+        <p id="checkboxError" class="text-red-500 text-sm hidden">Must check at least one.</p>
+      </div>
+      <button type="submit" class="bg-gold text-white font-semibold px-6 py-2 rounded hover:opacity-90">Join the Waitlist</button>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-right text-xs text-gold pr-4 pb-2">
+    Powered by Elevated Echelon.
+  </footer>
+
+  <script>
+    document.getElementById('waitlistForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const interests = [...document.querySelectorAll('input[name="interest"]:checked')].map(cb => cb.value);
+
+      let hasError = false;
+      document.getElementById('nameError').classList.add('hidden');
+      document.getElementById('emailError').classList.add('hidden');
+      document.getElementById('checkboxError').classList.add('hidden');
+
+      if (!name) {
+        document.getElementById('nameError').classList.remove('hidden');
+        hasError = true;
+      }
+      if (!email) {
+        document.getElementById('emailError').classList.remove('hidden');
+        hasError = true;
+      }
+      if (interests.length === 0) {
+        document.getElementById('checkboxError').classList.remove('hidden');
+        hasError = true;
+      }
+
+      if (hasError) return;
+
+      const subject =
+        interests.length === 2 ? 'wants to become both' :
+        interests[0] === 'Guest' ? 'wants to Become a Guest' :
+        'wants to Become a Host';
+
+      const body = `Name: ${name}\nEmail: ${email}\nInterest: ${interests.join(', ')}`;
+
+      window.location.href = `mailto:elevatedechelon2025@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
+</body>
+</html>
